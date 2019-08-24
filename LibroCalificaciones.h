@@ -3,11 +3,12 @@
 
 #include <string>
 
-//Matriz
+//Matriz constante 
 static const int ESTUDIANTES = 10;
 static const int EXAMENES = 3;
 
 class LibroCalificaciones {
+
 
 	//Atributos de la clase
 	std::string nombreCurso;
@@ -17,7 +18,7 @@ class LibroCalificaciones {
 	int obtenerNotaMinima();
 	int obtenerNotaMaxima();
 
-	double obtenerPromedio(const int estudiante, const int examen);
+	double obtenerPromedio(const int estudiante, const int);
 
 	
 
@@ -26,9 +27,7 @@ public:
 
 	LibroCalificaciones();
 
-	LibroCalificaciones(const std::string& nombreCurso, int arreglocalificaciones[][EXAMENES]);
-	
-	LibroCalificaciones(const std::string nombreCurso,int calificaciones[][EXAMENES]);
+	LibroCalificaciones(const std::string& nombreCurso,int calificaciones[][EXAMENES]);
 
 
 	//Metodos publicos
@@ -37,9 +36,11 @@ public:
 
 
 	//Metodos set y get
-	std::string getNombreCurso();
+	const std::string getNombreCurso();
 
-	void setNombreCurso();
+	void setNombreCurso(const std::string& nombreCurso);
+
+	
 
 
 };

@@ -2,11 +2,13 @@
 #include <iomanip>
 #include <iostream>
 
+//llamado de los constructores
+LibroCalificaciones::LibroCalificaciones(){
+	
+}
 
-LibroCalificaciones::LibroCalificaciones(){}
 
-
-LibroCalificaciones::LibroCalificaciones(const std::string nombreCurso, int arreglocalificaciones[][EXAMENES]){
+LibroCalificaciones::LibroCalificaciones(const std::string& nombreCurso, int arreglocalificaciones[][EXAMENES]){
 
 	setNombreCurso(nombreCurso);
 
@@ -65,35 +67,30 @@ int LibroCalificaciones::obtenerNotaMaxima() {
 }
 
 //Obtiene el promedio
-double LibroCalificaciones::obtenerPromedio(const int estudiante, const int examen){
+double LibroCalificaciones::obtenerPromedio(const int estudiante, const int){
+	
+	double sum = 0;
 
-	float pro = 0;
+	for (int exam = 0; exam < EXAMENES; exam++) {
 
-	float sum = 0;
-
-	for (int exam = 0; exam < examen; exam++) {
-
-		sum = sum + calificaciones[estudiante][examen];
+		sum += calificaciones[estudiante][exam];
+		
 	}
-
-	pro = sum / 3;
-
-	return pro;
+	
+	return sum / EXAMENES;
 }
 
 //Da el reporte de notas
 std::string LibroCalificaciones::obtenerReporteNotas() {
 
-	std::string rpnt = "\nLas siguientes son las notas del curso [Curso Progra I]: \n\t\t\t\tExamen 1\tExamen 2\tExamen 3\tPromedio\n";
+	std::string rpnt = "\nLas siguientes son las notas del curso [Curso Progra I]: \n\t\t\tExamen1 \tExamen2 \tExamen3 \tPromedio\n";
 
 	for (int estudiante = 0; estudiante < ESTUDIANTES; ++estudiante) {
 
 
-		rpnt = rpnt + "Estudiante [" + std::to_string(estudiante) + "] \t\t ["
-			+ std::to_string(calificaciones[estudiante][0]) + "]\t\t ["
-			+ std::to_string(calificaciones[estudiante][1]) + "] \t\t [" 
-			+ std::to_string(calificaciones[estudiante][2]) + "] \t\t ["
-			+ std::to_string(obtenerPromedio(estudiante, 3)) + "] \t\t";
+		rpnt = rpnt + "\nEstudiante[" + std::to_string(estudiante+1) + "]\t\t" + std::to_string(calificaciones[estudiante][0]) + "\t\t"
+			+ std::to_string(calificaciones[estudiante][1]) + "\t\t" + std::to_string(calificaciones[estudiante][2]) + "\t\t"
+			+ std::to_string(obtenerPromedio(estudiante,3)) + "\t\t";
 
 	}
 
@@ -112,13 +109,13 @@ std::string LibroCalificaciones::obtenerReporteNotasMaxMin() {
 }
 
 //Metodos Set y Get
-std::string LibroCalificaciones::getNombreCurso() {
+const std::string LibroCalificaciones::getNombreCurso() {
 
 	return nombreCurso;
 }
 
-void LibroCalificaciones::setNombreCurso(){
+void LibroCalificaciones::setNombreCurso( const std::string& nombreCurso){
 
-	LibroCalificaciones nombreCurso = nombreCurso;
+	 LibroCalificaciones::nombreCurso = nombreCurso;
 
 }
